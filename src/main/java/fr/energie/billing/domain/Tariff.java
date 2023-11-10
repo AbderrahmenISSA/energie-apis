@@ -1,5 +1,8 @@
 package fr.energie.billing.domain;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,33 +17,36 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Tariff {
-	
+
 	public static final String TARIFF_PRS = "PRS";
 	public static final String TARIFF_PME = "PME";
 	public static final String TARIFF_TGE = "TGE";
 
-    @Id
-    @Column(nullable = false, updatable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	private final static Locale FRANCE = new Locale("fr", "FR");
+	public final static NumberFormat CURRENCY_FORMAT = NumberFormat.getCurrencyInstance(FRANCE);
 
-    @Column(length = 45)
-    private String code;
+	@Id
+	@Column(nullable = false, updatable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @Column(length = 200)
-    private String label;
+	@Column(length = 45)
+	private String code;
 
-    private Float electricityPrice;
+	@Column(length = 200)
+	private String label;
 
-    private Float gazPrice;
+	private Float electricityPrice;
 
-    /**
-     * 
-     * @param code
-     * @param label
-     * @param electricityPrice
-     * @param gazPrice
-     */
+	private Float gazPrice;
+
+	/**
+	 * 
+	 * @param code
+	 * @param label
+	 * @param electricityPrice
+	 * @param gazPrice
+	 */
 	public Tariff(String code, String label, Float electricityPrice, Float gazPrice) {
 		super();
 		this.code = code;
@@ -48,7 +54,5 @@ public class Tariff {
 		this.electricityPrice = electricityPrice;
 		this.gazPrice = gazPrice;
 	}
-	
-	
 
 }

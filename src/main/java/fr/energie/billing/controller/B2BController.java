@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.energie.billing.domain.Business;
 import fr.energie.billing.dto.BusinessDTO;
 import fr.energie.billing.repos.BusinessRepository;
+import fr.energie.billing.rest.RestError;
+import fr.energie.billing.rest.RestResponse;
 import fr.energie.billing.utils.BusinessDtoUtils;
 
 @RestController
@@ -20,23 +22,23 @@ import fr.energie.billing.utils.BusinessDtoUtils;
 public class B2BController {
 
 	protected static final String B2C_V1 = "v1/b2b";
-	
+
 	@Autowired
 	private BusinessRepository businessRepository;
 
 	@GetMapping("business")
 	public RestResponse index(@RequestParam("reference") Optional<String> reference) {
-		
+
 		// find All
 		if (!reference.isPresent()) {
 			List<Business> result = businessRepository.findAll();
 			List<BusinessDTO> persons = BusinessDtoUtils.convertToDTOs(result);
 			return new RestResponse(HttpStatus.OK.value(), persons);
 		}
-		
+
 		// find by reference
 		Optional<Business> businessOptional = businessRepository.findByCustomerReference(reference.get());
-		
+
 		// Check user existence
 		if (businessOptional.isEmpty()) {
 			RestError error = new RestError();

@@ -6,10 +6,11 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import fr.energie.billing.domain.MonthlyConsumption;
+import fr.energie.billing.domain.Tariff;
 import fr.energie.billing.dto.BillDTO;
 
 public class BillDtoUtils {
-	
+
 	/**
 	 * 
 	 * @param consumptions
@@ -22,7 +23,7 @@ public class BillDtoUtils {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 
 	 * @param consumption
@@ -31,7 +32,10 @@ public class BillDtoUtils {
 	public static BillDTO convertToDTO(MonthlyConsumption consumption) {
 		BillDTO result = new BillDTO();
 		BeanUtils.copyProperties(consumption, result);
-		result.setTotalAmount(consumption.getTotalElectricityAmount() + consumption.getTotalGazAmount());
+		result.setTotalElectricityAmount(Tariff.CURRENCY_FORMAT.format(consumption.getTotalElectricityAmount()));
+		result.setTotalGazAmount(Tariff.CURRENCY_FORMAT.format(consumption.getTotalGazAmount()));
+		result.setTotalAmount(Tariff.CURRENCY_FORMAT
+				.format(consumption.getTotalElectricityAmount() + consumption.getTotalGazAmount()));
 		return result;
 	}
 }

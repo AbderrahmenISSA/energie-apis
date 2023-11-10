@@ -13,11 +13,11 @@ import lombok.Setter;
 @JsonInclude(Include.NON_EMPTY)
 public class BillDTO {
 
-    private LocalDate startConsumptionDate;
-    private LocalDate endConsumptionDate;
-    private Integer gazConsumed;
-    private Integer electricityConsumed;
-    private Float totalElectricityAmount;
-    private Float totalGazAmount;
-    private Float totalAmount;
+	private LocalDate startConsumptionDate;
+	private LocalDate endConsumptionDate;
+	private Integer gazConsumed;
+	private Integer electricityConsumed;
+	private String totalElectricityAmount;
+	private String totalGazAmount;
+	private String totalAmount;
 }

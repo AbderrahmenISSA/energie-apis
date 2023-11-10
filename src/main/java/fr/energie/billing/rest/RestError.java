@@ -1,4 +1,4 @@
-package fr.energie.billing.controller;
+package fr.energie.billing.rest;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
