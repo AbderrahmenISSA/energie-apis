@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class ConsumptionDetail {
+public class MonthlyConsumption {
 
     @Id
     @Column(nullable = false, updatable = false)
@@ -34,18 +34,24 @@ public class ConsumptionDetail {
     
     @Column
     private Integer electricityConsumed;
+    
+    @Column
+    private Float totalElectricityAmount;
+
+    @Column
+    private Float totalGazAmount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-	public ConsumptionDetail(LocalDate startConsumptionDate, LocalDate endConsumptionDate, Integer gazConsumed,
-			Integer electricityConsumed, Customer customer) {
+	public MonthlyConsumption(LocalDate startConsumptionDate, LocalDate endConsumptionDate, Integer electricityConsumed,
+			Integer gazConsumed, Customer customer) {
 		super();
 		this.startConsumptionDate = startConsumptionDate;
 		this.endConsumptionDate = endConsumptionDate;
-		this.gazConsumed = gazConsumed;
 		this.electricityConsumed = electricityConsumed;
+		this.gazConsumed = gazConsumed;
 		this.customer = customer;
 	}
     

@@ -1,7 +1,5 @@
 package fr.energie.billing.domain;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,11 +7,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 @AllArgsConstructor
 public class Tariff {
+	
+	public static final String TARIFF_PRS = "PRS";
+	public static final String TARIFF_PME = "PME";
+	public static final String TARIFF_TGE = "TGE";
 
     @Id
     @Column(nullable = false, updatable = false)
@@ -26,11 +30,9 @@ public class Tariff {
     @Column(length = 200)
     private String label;
 
-    @Column(precision = 10, scale = 2)
-    private BigDecimal electricityPrice;
+    private Float electricityPrice;
 
-    @Column(precision = 10, scale = 2)
-    private BigDecimal gazPrice;
+    private Float gazPrice;
 
     /**
      * 
@@ -39,12 +41,14 @@ public class Tariff {
      * @param electricityPrice
      * @param gazPrice
      */
-	public Tariff(String code, String label, BigDecimal electricityPrice, BigDecimal gazPrice) {
+	public Tariff(String code, String label, Float electricityPrice, Float gazPrice) {
 		super();
 		this.code = code;
 		this.label = label;
 		this.electricityPrice = electricityPrice;
 		this.gazPrice = gazPrice;
 	}
+	
+	
 
 }

@@ -16,6 +16,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Person {
 	
+	public static final String CIVILITY_MALE = "M.";
+	public static final String CIVILITY_FEMALE = "Mme.";
+	
     @Id
     @Column(nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

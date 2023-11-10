@@ -32,10 +32,7 @@ public class Customer {
     private Business business;
 
     @OneToMany(mappedBy = "customer")
-    private Set<ConsumptionDetail> consumptionDetails;
-
-    @OneToMany(mappedBy = "customer")
-    private Set<Bill> customerBills;
+    private Set<MonthlyConsumption> monthlyConsumptions;
     
     /**
      * 

@@ -1,7 +1,5 @@
 package fr.energie.billing.domain;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,6 +15,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class Business {
+	
+	public static final Integer PME_MAX_CAPITAL = 1000000;
 
 	@Id
     @Column(nullable = false, updatable = false)
@@ -29,8 +29,7 @@ public class Business {
     @Column(length = 45)
     private String siret;
 
-    @Column(precision = 10, scale = 2)
-    private BigDecimal capital;
+    private Integer capital;
 
     @OneToOne(cascade = CascadeType.ALL ) 
     @JoinColumn(name = "customer_id", nullable = false)
@@ -43,7 +42,7 @@ public class Business {
      * @param capital
      * @param reference
      */
-	public Business(String name, String siret, BigDecimal capital, String reference) {
+	public Business(String name, String siret, Integer capital, String reference) {
 		this.name = name;
 		this.siret = siret;
 		this.capital = capital;

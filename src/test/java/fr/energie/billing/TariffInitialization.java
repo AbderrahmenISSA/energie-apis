@@ -1,7 +1,5 @@
 package fr.energie.billing;
 
-import java.math.BigDecimal;
-
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +24,9 @@ public class TariffInitialization {
 	 */
 	@Test
 	public void initializePersonalTariff() {
-		BigDecimal electricityPrice = new BigDecimal(Float.valueOf(0.133f));
-		BigDecimal gazPrice = new BigDecimal(Float.valueOf(0.108f));
-		Tariff particularTariff = new Tariff("PRS", "Tarif pour les particuliers", electricityPrice, gazPrice);
+		Float electricityPrice = Float.valueOf(0.133f);
+		Float gazPrice = Float.valueOf(0.108f);
+		Tariff particularTariff = new Tariff(Tariff.TARIFF_PRS, "Tarif pour les particuliers", electricityPrice, gazPrice);
 		tariffRepository.save(particularTariff);
 	}
 	
@@ -38,9 +36,9 @@ public class TariffInitialization {
 	 */
 	@Test
 	public void initializePmeTariff() {
-		BigDecimal electricityPrice = new BigDecimal(Float.valueOf(0.112f));
-		BigDecimal gazPrice = new BigDecimal(Float.valueOf(0.117f));
-		Tariff particularTariff = new Tariff("PME", "Tarif pour les PME, dont le capital <= 1 000 000 ", electricityPrice, gazPrice);
+		Float electricityPrice = Float.valueOf(0.112f);
+		Float gazPrice = Float.valueOf(0.117f);
+		Tariff particularTariff = new Tariff(Tariff.TARIFF_PME, "Tarif pour les sociétés dont le capital <= 1 000 000 ", electricityPrice, gazPrice);
 		tariffRepository.save(particularTariff);
 	}
 	
@@ -50,9 +48,9 @@ public class TariffInitialization {
 	 */
 	@Test
 	public void initializeGeTariff() {
-		BigDecimal electricityPrice = new BigDecimal(Float.valueOf(0.110f));
-		BigDecimal gazPrice = new BigDecimal(Float.valueOf(0.123f));
-		Tariff particularTariff = new Tariff("GE", "Tarif pour les GE, dont le capital > 1 000 000 €", electricityPrice, gazPrice);
+		Float electricityPrice = Float.valueOf(0.110f);
+		Float gazPrice = Float.valueOf(0.123f);
+		Tariff particularTariff = new Tariff(Tariff.TARIFF_TGE, "Tarif pour les sociétés dont le capital > 1 000 000 €", electricityPrice, gazPrice);
 		tariffRepository.save(particularTariff);
 	}
 }
