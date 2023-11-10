@@ -1,14 +1,17 @@
 package fr.energie.billing.domain;
 
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import java.util.Set;
+import jakarta.persistence.OneToOne;
+import lombok.Data;
 
-
+@Data
 @Entity
 public class Customer {
 
@@ -34,63 +37,5 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer")
     private Set<Bill> customerBills;
-
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(final Integer id) {
-//        this.id = id;
-//    }
-//
-//    public String getReference() {
-//        return reference;
-//    }
-//
-//    public void setReference(final String reference) {
-//        this.reference = reference;
-//    }
-//
-//    public Set<Person> getCustomerPersons() {
-//        return customerPersons;
-//    }
-//
-//    public void setCustomerPersons(final Set<Person> customerPersons) {
-//        this.customerPersons = customerPersons;
-//    }
-//
-//    public Set<Business> getCustomerBusinesses() {
-//        return customerBusinesses;
-//    }
-//
-//    public void setCustomerBusinesses(final Set<Business> customerBusinesses) {
-//        this.customerBusinesses = customerBusinesses;
-//    }
-//
-//    public Set<ElectricityConsumptionDetail> getCustomerElectricityConsumptionDetails() {
-//        return customerElectricityConsumptionDetails;
-//    }
-//
-//    public void setCustomerElectricityConsumptionDetails(
-//            final Set<ElectricityConsumptionDetail> customerElectricityConsumptionDetails) {
-//        this.customerElectricityConsumptionDetails = customerElectricityConsumptionDetails;
-//    }
-//
-//    public Set<GazConsumptionDetail> getCustomerGazConsumptionDetails() {
-//        return customerGazConsumptionDetails;
-//    }
-//
-//    public void setCustomerGazConsumptionDetails(
-//            final Set<GazConsumptionDetail> customerGazConsumptionDetails) {
-//        this.customerGazConsumptionDetails = customerGazConsumptionDetails;
-//    }
-//
-//    public Set<Bill> getCustomerBills() {
-//        return customerBills;
-//    }
-//
-//    public void setCustomerBills(final Set<Bill> customerBills) {
-//        this.customerBills = customerBills;
-//    }
 
 }

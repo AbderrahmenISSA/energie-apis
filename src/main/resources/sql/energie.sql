@@ -33,13 +33,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `energie`.`person` ;
 
 CREATE TABLE IF NOT EXISTS `energie`.`person` (
-  `customer_id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `civility` VARCHAR(45) NULL,
-  `firstname` VARCHAR(45) NULL,
+  `firstname` VARCHAR(45) NOT NULL,
   `lastname` VARCHAR(45) NULL,
-  INDEX `fk_person_customer_idx` (`customer_id` ASC),
-  PRIMARY KEY (`customer_id`),
-  CONSTRAINT `fk_person_customer`
+  `customer_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `customer_id`),
+  INDEX `fk_person_customer1_idx` (`customer_id` ASC),
+  CONSTRAINT `fk_person_customer1`
     FOREIGN KEY (`customer_id`)
     REFERENCES `energie`.`customer` (`id`)
     ON DELETE NO ACTION
@@ -53,11 +54,13 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `energie`.`business` ;
 
 CREATE TABLE IF NOT EXISTS `energie`.`business` (
-  `customer_id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `siret` VARCHAR(45) NULL,
   `capital` DECIMAL NULL,
-  PRIMARY KEY (`customer_id`),
+  `customer_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `customer_id`),
+  INDEX `fk_business_customer1_idx` (`customer_id` ASC),
   CONSTRAINT `fk_business_customer1`
     FOREIGN KEY (`customer_id`)
     REFERENCES `energie`.`customer` (`id`)

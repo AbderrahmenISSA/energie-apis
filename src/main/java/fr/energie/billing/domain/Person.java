@@ -1,17 +1,24 @@
 package fr.energie.billing.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import lombok.Data;
 
-
+@Data
 @Entity
 public class Person {
-
+	
     @Id
+    @Column(nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @Column(nullable = false, updatable = false, length = 45)
     private String civility;
 
@@ -21,40 +28,14 @@ public class Person {
     @Column(length = 45)
     private String lastname;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL ) 
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-//    public String getCivility() {
-//        return civility;
-//    }
-//
-//    public void setCivility(final String civility) {
-//        this.civility = civility;
-//    }
-//
-//    public String getFirstname() {
-//        return firstname;
-//    }
-//
-//    public void setFirstname(final String firstname) {
-//        this.firstname = firstname;
-//    }
-//
-//    public String getLastname() {
-//        return lastname;
-//    }
-//
-//    public void setLastname(final String lastname) {
-//        this.lastname = lastname;
-//    }
-//
-//    public Customer getCustomer() {
-//        return customer;
-//    }
-//
-//    public void setCustomer(final Customer customer) {
-//        this.customer = customer;
-//    }
+	@Override
+	public String toString() {
+		return "Person [" + civility + " " + firstname + " " + lastname + ", reference="
+				+ customer.getReference() + "]";
+	}
 
 }
