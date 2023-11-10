@@ -10,12 +10,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Customer {
 
-    @Id
+	@Id
     @Column(nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,12 +32,17 @@ public class Customer {
     private Business business;
 
     @OneToMany(mappedBy = "customer")
-    private Set<ElectricityConsumptionDetail> customerElectricityConsumptionDetails;
-
-    @OneToMany(mappedBy = "customer")
-    private Set<GazConsumptionDetail> customerGazConsumptionDetails;
+    private Set<ConsumptionDetail> consumptionDetails;
 
     @OneToMany(mappedBy = "customer")
     private Set<Bill> customerBills;
+    
+    /**
+     * 
+     * @param reference
+     */
+    public Customer(String reference) {
+    	this.reference = reference;
+	}
 
 }

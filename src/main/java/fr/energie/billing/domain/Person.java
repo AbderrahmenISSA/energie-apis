@@ -9,9 +9,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Person {
 	
     @Id
@@ -32,6 +34,13 @@ public class Person {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
+	public Person(String civility, String firstname, String lastname, String reference) {
+		this.civility = civility;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.customer = new Customer(reference);
+	}
+	
 	@Override
 	public String toString() {
 		return "Person [" + civility + " " + firstname + " " + lastname + ", reference="

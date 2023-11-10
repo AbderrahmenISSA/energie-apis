@@ -1,16 +1,18 @@
 package fr.energie.billing.domain;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.math.BigDecimal;
 
 @Data
 @Entity
+@AllArgsConstructor
 public class Tariff {
 
     @Id
@@ -21,53 +23,28 @@ public class Tariff {
     @Column(length = 45)
     private String code;
 
-    @Column(length = 45)
+    @Column(length = 200)
     private String label;
 
     @Column(precision = 10, scale = 2)
-    private BigDecimal kwhPrice;
+    private BigDecimal electricityPrice;
 
     @Column(precision = 10, scale = 2)
     private BigDecimal gazPrice;
 
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(final Integer id) {
-//        this.id = id;
-//    }
-//
-//    public String getCode() {
-//        return code;
-//    }
-//
-//    public void setCode(final String code) {
-//        this.code = code;
-//    }
-//
-//    public String getLabel() {
-//        return label;
-//    }
-//
-//    public void setLabel(final String label) {
-//        this.label = label;
-//    }
-//
-//    public BigDecimal getKwhPrice() {
-//        return kwhPrice;
-//    }
-//
-//    public void setKwhPrice(final BigDecimal kwhPrice) {
-//        this.kwhPrice = kwhPrice;
-//    }
-//
-//    public BigDecimal getGazPrice() {
-//        return gazPrice;
-//    }
-//
-//    public void setGazPrice(final BigDecimal gazPrice) {
-//        this.gazPrice = gazPrice;
-//    }
+    /**
+     * 
+     * @param code
+     * @param label
+     * @param electricityPrice
+     * @param gazPrice
+     */
+	public Tariff(String code, String label, BigDecimal electricityPrice, BigDecimal gazPrice) {
+		super();
+		this.code = code;
+		this.label = label;
+		this.electricityPrice = electricityPrice;
+		this.gazPrice = gazPrice;
+	}
 
 }

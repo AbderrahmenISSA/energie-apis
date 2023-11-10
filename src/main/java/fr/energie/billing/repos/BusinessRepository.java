@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.energie.billing.domain.Business;
-import fr.energie.billing.domain.Person;
 
 
 public interface BusinessRepository extends JpaRepository<Business, String> {
